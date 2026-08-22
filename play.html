@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Play — Nalini Agnihotri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Nalini Agnihotri</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="play.html" class="active">Play</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Let's Talk</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">&#9776;</button>
+  </div>
+  <div class="nav-mobile-panel">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="play.html">Play</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<main class="container" style="padding-top:140px; padding-bottom:100px;">
+  <div class="section-head">
+    <h2>Catch Your Hobbies</h2>
+    <div class="rule"></div>
+    <p>Move the basket with your mouse, finger, or arrow keys. Catch 🧶⛰️🏖️📖🏓🏊, dodge the 🌀 tangles. Three misses and it's over.</p>
+  </div>
+
+  <div class="game-wrap">
+    <div class="game-hud">
+      <div>Score: <span id="gameScore">0</span></div>
+      <div id="gameLives">❤️❤️❤️</div>
+      <div>Best: <span id="gameBest">0</span></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div style="margin-top:20px;">
+      <button id="gameStart" class="btn btn-primary">Start game</button>
+    </div>
+    <p class="game-instructions">Tip: the game speeds up the longer you last.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner container">
+    <div class="brand">Nalini Agnihotri</div>
+    <div class="easter-hint">psst&hellip; try &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; b a</div>
+    <div class="footer-links">
+      <a href="https://github.com/nalini2080" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nalini-agnihotri/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:na485@cornell.edu">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/effects.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
