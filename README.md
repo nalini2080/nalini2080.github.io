@@ -1,17 +1,14 @@
 # nalini2080.github.io
 
-Personal portfolio site — static HTML/CSS/JS, no build step.
+Personal portfolio site — static HTML/CSS/JS, no build step. Single-page site with anchor navigation.
 
 ## Structure
 
-- `index.html` — home, hero with an interactive constellation background
-- `work.html` — projects & research
-- `about.html` — education, skills, experience timeline, hobbies
-- `play.html` — "Catch Your Hobbies" mini game
-- `contact.html` — contact links
+- `index.html` — everything: hero (name + contact), Projects, Professional Experience (+ Leadership, Education, Skills), Hobbies (with an embedded mini game), Contact
+- `work.html`, `about.html`, `play.html`, `contact.html` — redirect stubs pointing to the matching `index.html#anchor`, kept in case any old links exist
 - `css/style.css` — all styling
-- `js/effects.js` — custom cursor + trail, constellation animation, Konami-code easter egg (↑↑↓↓←→←→ b a) on every page
-- `js/game.js` — the hobby-catch game logic
+- `js/effects.js` — custom cursor + trail, twinkling constellation background, Konami-code easter egg (↑↑↓↓←→←→ b a)
+- `js/game.js` — the "Catch Your Hobbies" game logic
 
 ## Preview locally
 
@@ -34,6 +31,5 @@ npx serve .
 
 ## To-do before publishing
 
-- [ ] Add a real `assets/resume.pdf` (the Contact page links to it but the file isn't included yet)
-- [ ] Swap in a real profile photo if you want one on the About page
-- [ ] Double-check you're comfortable with everything public (this build intentionally leaves your phone number off every page — only email, LinkedIn, and GitHub are shown)
+- [ ] Swap in a real profile photo if you want one
+- [ ] Double-check you're comfortable with everything public (this build intentionally leaves your phone number and resume PDF off every page — only email, LinkedIn, and GitHub are shown)

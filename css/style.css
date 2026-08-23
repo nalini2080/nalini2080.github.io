@@ -336,11 +336,34 @@ body { cursor: none; }
 .col-span-8 { grid-column: span 12; }
 .col-span-4 { grid-column: span 12; }
 .col-span-6 { grid-column: span 12; }
+.col-span-12 { grid-column: span 12; }
 @media (min-width: 768px) {
   .col-span-8 { grid-column: span 8; }
   .col-span-4 { grid-column: span 4; }
   .col-span-6 { grid-column: span 6; }
 }
+
+/* anchor sections should clear the fixed nav when jumped to */
+section[id] { scroll-margin-top: 90px; }
+
+/* contact row in hero */
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.contact-row a {
+  color: rgba(225,224,255,0.85);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .25s;
+}
+.contact-row a:hover { color: var(--seafoam); }
 
 /* ---------- Timeline ---------- */
 .timeline { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
