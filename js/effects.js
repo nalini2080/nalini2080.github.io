@@ -73,18 +73,22 @@
   const heroCanvas = document.getElementById('constellation');
   if (heroCanvas) {
     const ctx = heroCanvas.getContext('2d');
-    let particles = [];
+    let stars = [];
     let mx = -9999, my = -9999;
+    let t = 0;
 
     function resizeHero() {
       heroCanvas.width = heroCanvas.parentElement.offsetWidth;
       heroCanvas.height = heroCanvas.parentElement.offsetHeight;
-      const count = Math.min(90, Math.floor((heroCanvas.width * heroCanvas.height) / 14000));
-      particles = Array.from({ length: count }, () => ({
+      const count = Math.min(110, Math.floor((heroCanvas.width * heroCanvas.height) / 11000));
+      stars = Array.from({ length: count }, () => ({
         x: Math.random() * heroCanvas.width,
         y: Math.random() * heroCanvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: 0.8 + Math.random() * 1.6,
+        twinkleSpeed: 0.02 + Math.random() * 0.04,
+        twinklePhase: Math.random() * Math.PI * 2,
       }));
     }
     resizeHero();
@@ -98,36 +102,39 @@
     heroCanvas.parentElement.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
 
     function tick() {
+      t++;
       ctx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > heroCanvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > heroCanvas.height) p.vy *= -1;
+      for (const s of stars) {
+        s.x += s.vx;
+        s.y += s.vy;
+        if (s.x < 0 || s.x > heroCanvas.width) s.vx *= -1;
+        if (s.y < 0 || s.y > heroCanvas.height) s.vy *= -1;
 
-        const dx = mx - p.x, dy = my - p.y;
+        const dx = mx - s.x, dy = my - s.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          p.x -= dx * 0.01;
-          p.y -= dy * 0.01;
+        if (dist < 130) {
+          s.x -= dx * 0.012;
+          s.y -= dy * 0.012;
         }
       }
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const a = stars[i], b = stars[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 110) {
+          if (d < 100) {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(26, 27, 65, ${0.12 * (1 - d / 110)})`;
+            ctx.strokeStyle = `rgba(64, 224, 208, ${0.18 * (1 - d / 100)})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
         }
+        const s = stars[i];
+        const twinkle = 0.55 + 0.45 * Math.sin(t * s.twinkleSpeed + s.twinklePhase);
         ctx.beginPath();
-        ctx.arc(particles[i].x, particles[i].y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(64, 224, 208, 0.7)';
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(225, 224, 255, ${0.5 + twinkle * 0.5})`;
         ctx.fill();
       }
       requestAnimationFrame(tick);

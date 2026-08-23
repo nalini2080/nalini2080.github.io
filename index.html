@@ -39,16 +39,23 @@
     <canvas id="constellation" class="hero-canvas"></canvas>
     <div class="hero-content">
       <span class="eyebrow"><span class="dot"></span> Cornell CS &middot; AI &amp; VR Research</span>
-      <h1>Building thoughtful software at the intersection of engineering and curiosity.</h1>
+      <h1>Building thoughtful software at the <span class="accent">intersection</span> of engineering and curiosity.</h1>
       <p class="lead">I'm Nalini — a Computer Science student at Cornell exploring AI, virtual reality, and product engineering, one project at a time.</p>
       <div class="hero-actions">
-        <a href="work.html" class="btn btn-primary">View My Work &rarr;</a>
-        <a href="about.html" class="btn btn-outline">About Me</a>
+        <a href="work.html" class="btn btn-primary on-dark">View My Work &rarr;</a>
+        <a href="about.html" class="btn btn-outline on-dark">About Me</a>
       </div>
+    </div>
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z" fill="#f9f9f9"/></svg>
     </div>
   </section>
 
-  <section class="section container">
+  <section class="section container" style="position:relative;">
+    <div class="blob-field">
+      <div class="blob blob-teal" style="width:280px;height:280px;left:-80px;top:20px;"></div>
+      <div class="blob blob-petal" style="width:220px;height:220px;right:-60px;bottom:0;"></div>
+    </div>
     <div class="section-head">
       <h2>What I've been up to</h2>
       <div class="rule"></div>
@@ -83,6 +90,7 @@
 </main>
 
 <footer class="footer">
+  <div class="wave-top"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,100 L0,100 Z"/></svg></div>
   <div class="footer-inner container">
     <div class="brand">Nalini Agnihotri</div>
     <div class="easter-hint">psst&hellip; try &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; b a</div>

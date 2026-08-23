@@ -1,18 +1,33 @@
 /* =========================================================
    Nalini Agnihotri — Portfolio
    Global styles, design tokens, shared components
+   Palette: starry night indigo/navy + ocean teal, light mode
    ========================================================= */
 
 :root {
-  --ink: #1A1B41;
-  --primary: #020229;
-  --seafoam: #40E0D0;
-  --petal: #F699CD;
+  /* core neutrals */
   --bg: #f9f9f9;
   --surface: #FAFAFA;
   --surface-bright: #ffffff;
   --border: #E5E5E5;
   --text-variant: #47464e;
+
+  /* starry night */
+  --primary: #020229;       /* deepest navy — night sky */
+  --ink: #1A1B41;            /* indigo — primary text/dark surfaces */
+  --ink-2: #2f2f6b;          /* lighter indigo for gradients */
+  --lavender: #e1e0ff;       /* primary-fixed */
+  --lavender-dim: #c2c2f2;   /* primary-fixed-dim */
+
+  /* ocean */
+  --seafoam: #40E0D0;
+  --teal-deep: #006a62;      /* secondary */
+  --mint: #5ef6e6;           /* secondary-container */
+
+  /* petal accent, used sparingly */
+  --petal: #F699CD;
+  --petal-soft: #ffd8ea;
+
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
@@ -85,8 +100,9 @@ body { cursor: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 500;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(16px);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
 }
 .nav-inner {
@@ -104,6 +120,10 @@ body { cursor: none; }
   font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  background: linear-gradient(120deg, var(--ink), var(--teal-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .nav-links {
   display: none;
@@ -122,21 +142,21 @@ body { cursor: none; }
 }
 .nav-links a:hover, .nav-links a.active {
   color: var(--ink);
-  border-bottom-color: var(--ink);
+  border-bottom-color: var(--seafoam);
 }
 .nav-cta {
   display: inline-flex;
   align-items: center;
   padding: 10px 22px;
-  background: var(--ink);
+  background: linear-gradient(120deg, var(--ink), var(--primary));
   color: #fff;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.03em;
-  transition: background .25s, transform .25s;
+  transition: box-shadow .25s, transform .25s;
 }
-.nav-cta:hover { background: var(--primary); transform: translateY(-1px); }
+.nav-cta:hover { box-shadow: 0 8px 20px -6px rgba(64,224,208,0.5); transform: translateY(-1px); }
 .nav-mobile-toggle { display: none; background: none; border: none; font-size: 26px; color: var(--ink); }
 @media (max-width: 767px) { .nav-mobile-toggle { display: block; } .nav-cta { display: none; } }
 .nav-mobile-panel {
@@ -168,14 +188,22 @@ body { cursor: none; }
   letter-spacing: 0.03em;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform .25s, background .25s, color .25s;
+  transition: transform .25s, box-shadow .25s, background .25s, color .25s;
 }
-.btn-primary { background: var(--ink); color: #fff; }
-.btn-primary:hover { background: var(--primary); transform: translateY(-2px); }
+.btn-primary {
+  background: linear-gradient(120deg, var(--ink) 0%, var(--primary) 100%);
+  color: #fff;
+}
+.btn-primary:hover { box-shadow: 0 10px 24px -8px rgba(64,224,208,0.55); transform: translateY(-2px); }
 .btn-outline { border-color: var(--ink); color: var(--ink); background: transparent; }
-.btn-outline:hover { background: rgba(26,27,65,0.05); transform: translateY(-2px); }
+.btn-outline:hover { background: rgba(64,224,208,0.08); border-color: var(--teal-deep); transform: translateY(-2px); }
 
-/* ---------- Hero ---------- */
+/* on dark surfaces (hero / footer) */
+.btn-primary.on-dark { background: linear-gradient(120deg, var(--seafoam), var(--mint)); color: var(--primary); }
+.btn-outline.on-dark { border-color: rgba(255,255,255,0.5); color: #fff; }
+.btn-outline.on-dark:hover { background: rgba(255,255,255,0.08); border-color: var(--seafoam); }
+
+/* ---------- Hero (starry night + ocean) ---------- */
 .hero {
   position: relative;
   min-height: 92vh;
@@ -184,7 +212,9 @@ body { cursor: none; }
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  padding: 140px 20px 80px;
+  padding: 140px 20px 110px;
+  background: radial-gradient(ellipse at 30% 20%, #100f3a 0%, var(--primary) 55%, #050516 100%);
+  color: #fff;
 }
 .hero-canvas {
   position: absolute;
@@ -197,26 +227,34 @@ body { cursor: none; }
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: rgba(64,224,208,0.12);
-  border: 1px solid rgba(64,224,208,0.3);
+  background: rgba(94, 246, 230, 0.12);
+  border: 1px solid rgba(94, 246, 230, 0.35);
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--mint);
   margin-bottom: 24px;
+  backdrop-filter: blur(6px);
 }
-.eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--seafoam); }
+.eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--seafoam); box-shadow: 0 0 10px var(--seafoam); }
 .hero h1 {
   font-size: clamp(36px, 6vw, 68px);
   line-height: 1.12;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
+  color: #fff;
+}
+.hero h1 .accent {
+  background: linear-gradient(120deg, var(--seafoam), var(--lavender));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .hero p.lead {
   font-size: 18px;
-  color: var(--text-variant);
+  color: rgba(225, 224, 255, 0.8);
   max-width: 600px;
   margin: 0 auto 40px;
 }
@@ -227,60 +265,93 @@ body { cursor: none; }
   justify-content: center;
 }
 
+/* wave divider — sits at the bottom edge of a dark section, flows into light content */
+.wave-divider {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  z-index: 3;
+  line-height: 0;
+}
+.wave-divider svg { width: 100%; height: 90px; display: block; }
+.wave-divider.flip { bottom: auto; top: -1px; transform: scaleY(-1); }
+
 /* ---------- Section headers ---------- */
-.section { padding: 80px 0; }
+.section { padding: 80px 0; position: relative; }
 .section-head { text-align: center; margin-bottom: 56px; }
 .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
-.section-head .rule { width: 48px; height: 1px; background: var(--border); margin: 0 auto; }
+.section-head .rule { width: 48px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--seafoam), var(--lavender)); margin: 0 auto; }
 .section-head p { color: var(--text-variant); max-width: 560px; margin: 12px auto 0; }
+
+/* ---------- Soft blob accents (used sparingly, a few per page) ---------- */
+.blob-field { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.35;
+}
+.blob-teal { background: var(--seafoam); }
+.blob-petal { background: var(--petal); }
+.blob-lavender { background: var(--lavender-dim); }
 
 /* ---------- Bento grid / cards ---------- */
 .bento {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gutter);
+  position: relative;
+  z-index: 1;
 }
 .card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 32px;
-  transition: border-color .4s, background .4s, transform .3s;
+  transition: border-color .4s, background .4s, transform .3s, box-shadow .4s;
 }
-.card:hover { border-color: var(--ink); background: #fff; transform: translateY(-4px); }
+.card:hover {
+  border-color: transparent;
+  background: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1.5px var(--seafoam), 0 16px 32px -16px rgba(26,27,65,0.25);
+}
 .tag {
   display: inline-flex;
   padding: 5px 14px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
-  background: rgba(64,224,208,0.12);
-  color: var(--ink);
+  background: linear-gradient(120deg, rgba(64,224,208,0.16), rgba(94,246,230,0.12));
+  color: var(--teal-deep);
   margin-bottom: 16px;
 }
-.tag.pink { background: rgba(246,153,205,0.15); }
+.tag.pink { background: linear-gradient(120deg, rgba(246,153,205,0.18), rgba(255,216,234,0.18)); color: #9c2e6c; }
 .card h3 { font-size: 22px; margin-bottom: 10px; }
 .card p { color: var(--text-variant); margin: 0 0 16px; }
 .card .links { display: flex; gap: 16px; margin-top: auto; }
 .card .links a { font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 4px; }
-.card .links a:hover { color: var(--seafoam); }
+.card .links a:hover { color: var(--teal-deep); }
 
 .col-span-8 { grid-column: span 12; }
 .col-span-4 { grid-column: span 12; }
+.col-span-6 { grid-column: span 12; }
 @media (min-width: 768px) {
   .col-span-8 { grid-column: span 8; }
   .col-span-4 { grid-column: span 4; }
+  .col-span-6 { grid-column: span 6; }
 }
 
 /* ---------- Timeline ---------- */
-.timeline { max-width: 760px; margin: 0 auto; position: relative; }
+.timeline { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
 .timeline::before {
   content: '';
   position: absolute;
   left: 19px;
   top: 0; bottom: 0;
   width: 2px;
-  background: var(--border);
+  background: linear-gradient(180deg, var(--seafoam), var(--lavender-dim), var(--petal));
+  opacity: 0.5;
 }
 @media (min-width: 640px) { .timeline::before { left: 50%; } }
 .t-item { position: relative; margin-bottom: 40px; padding-left: 52px; }
@@ -291,13 +362,14 @@ body { cursor: none; }
 }
 .t-dot {
   position: absolute;
-  left: 12px; top: 0;
-  width: 16px; height: 16px;
+  left: 10px; top: 0;
+  width: 18px; height: 18px;
   border-radius: 50%;
-  background: var(--surface-bright);
-  border: 2px solid var(--ink);
+  background: linear-gradient(135deg, var(--seafoam), var(--ink));
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--border);
 }
-@media (min-width: 640px) { .t-dot { left: -8px; } .t-item.left .t-dot { left: auto; right: -8px; } }
+@media (min-width: 640px) { .t-dot { left: -9px; } .t-item.left .t-dot { left: auto; right: -9px; } }
 .t-item h4 { font-size: 18px; margin-bottom: 4px; }
 .t-item .t-role { font-weight: 600; color: var(--ink); }
 .t-item .t-meta { font-size: 13px; color: var(--text-variant); margin-bottom: 8px; }
@@ -306,7 +378,7 @@ body { cursor: none; }
 .t-item li { margin-bottom: 4px; }
 
 /* ---------- Skills ---------- */
-.skill-group { margin-bottom: 20px; }
+.skill-group { margin-bottom: 20px; position: relative; z-index: 1; }
 .skill-group h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-variant); margin-bottom: 10px; }
 .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .skill-pill {
@@ -316,15 +388,17 @@ body { cursor: none; }
   background: #fff;
   font-size: 13px;
   font-weight: 500;
-  transition: border-color .25s, transform .25s;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
 }
-.skill-pill:hover { border-color: var(--seafoam); transform: translateY(-2px); }
+.skill-pill:hover { border-color: var(--seafoam); transform: translateY(-2px); box-shadow: 0 6px 14px -8px rgba(64,224,208,0.6); }
 
 /* ---------- Hobbies ---------- */
 .hobby-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+  position: relative;
+  z-index: 1;
 }
 @media (min-width: 640px) { .hobby-grid { grid-template-columns: repeat(3, 1fr); } }
 .hobby-card {
@@ -333,19 +407,46 @@ body { cursor: none; }
   border-radius: var(--radius-md);
   padding: 24px 16px;
   text-align: center;
-  transition: transform .3s, border-color .3s;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
 }
-.hobby-card:hover { transform: translateY(-6px) rotate(-1deg); border-color: var(--petal); }
+.hobby-card:hover { transform: translateY(-6px) rotate(-1deg); border-color: var(--petal); box-shadow: 0 14px 28px -14px rgba(246,153,205,0.5); }
 .hobby-emoji { font-size: 32px; display: block; margin-bottom: 10px; }
 .hobby-card span.label { font-size: 13px; font-weight: 600; color: var(--text-variant); }
 
-/* ---------- Footer ---------- */
+/* ---------- Footer (night sky bookend) ---------- */
 .footer {
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  padding: 40px 0;
+  position: relative;
+  background: radial-gradient(ellipse at 70% 0%, #12123f 0%, var(--primary) 60%, #04040f 100%);
+  padding: 64px 0 40px;
+  color: rgba(255,255,255,0.85);
+  overflow: hidden;
 }
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 80% 10%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 40% 60%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 65% 80%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 90% 50%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 25% 85%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 55% 35%, #fff 100%, transparent);
+  opacity: 0.5;
+}
+.footer .wave-divider.flip svg path { fill: var(--bg); }
+.footer .wave-top {
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  line-height: 0;
+  z-index: 0;
+}
+.footer .wave-top svg { width: 100%; height: 56px; display: block; }
+.footer .wave-top svg path { fill: var(--bg); }
 .footer-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,10 +454,11 @@ body { cursor: none; }
   text-align: center;
 }
 @media (min-width: 768px) { .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; } }
+.footer .brand { background: linear-gradient(120deg, var(--seafoam), var(--lavender)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 13px; color: var(--text-variant); transition: color .25s; }
-.footer-links a:hover { color: var(--ink); }
-.easter-hint { font-size: 11px; color: var(--border); letter-spacing: 0.04em; }
+.footer-links a { font-size: 13px; color: rgba(225,224,255,0.75); transition: color .25s; }
+.footer-links a:hover { color: var(--seafoam); }
+.easter-hint { font-size: 11px; color: rgba(225,224,255,0.4); letter-spacing: 0.04em; }
 
 /* ---------- Easter egg overlay ---------- */
 .egg-overlay {
@@ -402,9 +504,11 @@ body { cursor: none; }
   max-width: 640px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 #gameCanvas {
-  background: linear-gradient(180deg, #eafcfa, #fff);
+  background: linear-gradient(180deg, #0d0d33 0%, #10406b 55%, #17b6a8 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   width: 100%;
@@ -420,3 +524,16 @@ body { cursor: none; }
   font-size: 14px;
 }
 .game-instructions { color: var(--text-variant); font-size: 14px; margin-top: 16px; }
+
+/* ---------- Page hero banner (non-home pages) ---------- */
+.page-banner {
+  position: relative;
+  padding: 150px 20px 70px;
+  text-align: left;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 85% -10%, #16165a 0%, var(--primary) 60%, #050516 100%);
+  color: #fff;
+}
+.page-banner .eyebrow { margin-bottom: 20px; }
+.page-banner h1, .page-banner h2 { color: #fff; font-size: clamp(30px, 5vw, 48px); }
+.page-banner p { color: rgba(225,224,255,0.8); max-width: 620px; margin-top: 16px; }
