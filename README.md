@@ -18,18 +18,4 @@ Open `index.html` directly in a browser, or serve it so relative paths behave ex
 npx serve .
 ```
 
-## Deploy to GitHub Pages
-
-1. Create a new **public** repo on GitHub named `nalini2080.github.io` (or any name if you don't want the root user-site URL).
-2. From this folder:
-   ```
-   git remote add origin https://github.com/nalini2080/<repo-name>.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. In the repo Settings → Pages, set the source to the `main` branch, root folder. If the repo is named `nalini2080.github.io`, the site is live automatically at `https://nalini2080.github.io/`.
-
-## To-do before publishing
-
-- [ ] Swap in a real profile photo if you want one
-- [ ] Double-check you're comfortable with everything public (this build intentionally leaves your phone number and resume PDF off every page — only email, LinkedIn, and GitHub are shown)
+The site is live automatically at `https://nalini2080.github.io/`.
